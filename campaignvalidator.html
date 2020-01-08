@@ -20,7 +20,6 @@
     <script>
       $('#alert-div').hide()
       function testCampaign() {
-        $('#alert-div').fadeOut()
         var term = $('#termInput').val()
         var res = term.match(/(^[\d]{8,9}$|^[\w]{24}$|.*\.BRM.*|KD[\d]{6}$)/)
         if (res) {
@@ -35,6 +34,15 @@
         $('#alert-div').fadeIn()
         setTimeout("$('#alert-div').fadeOut()", 5000)
       }
+      
+      $(document).ready(function() {
+        $(window).keydown(function(event){
+          if(event.keyCode == 13) {
+            testCampaign()
+            return false
+          }
+        })
+      })
     </script>
     <title>Campaign Validator</title>
   </head>
@@ -43,18 +51,15 @@
         <div class="border border-light rounded col-12 mt-5 bg">
           <h2>Campaign Validator</h2>
           <div id="alert-div" class="alert alert-dismissible fade show" role="alert" style="display: block">
-            
           </div>
-          <form>
-            <div class="form-group">
-              <input type="text" name="term" class="form-control" value="" autocomplete="off" id="termInput" />
-              <small id="emailHelp" class="form-text text-muted">&bull; ser numérico de 8 à 9 caracteres</small>
-              <small id="emailHelp" class="form-text text-muted">&bull; ser alfanumérico de 24 caracteres (não pode ter espaço)</small>
-              <small id="emailHelp" class="form-text text-muted">&bull; conter em qualquer posição o texto .BRM ex: Campain.home-70%off.BRM-thing</small>
-              <small id="emailHelp" class="form-text text-muted">&bull; começar com o prefixo KD e ser seguido de 6 dpigitos numéridos ex:KD123456</small>
-              <button type="button" onclick="testCampaign()" class="btn btn-primary">Validar</button>
-            </div>
-          </form>
+          <div class="form-group">
+            <input type="text" name="term" class="form-control" value="" autocomplete="off" id="termInput" />
+            <small id="emailHelp" class="form-text text-muted">&bull; ser numérico de 8 à 9 caracteres</small>
+            <small id="emailHelp" class="form-text text-muted">&bull; ser alfanumérico de 24 caracteres (não pode ter espaço)</small>
+            <small id="emailHelp" class="form-text text-muted">&bull; conter em qualquer posição o texto .BRM ex: Campain.home-70%off.BRM-thing</small>
+            <small id="emailHelp" class="form-text text-muted">&bull; começar com o prefixo KD e ser seguido de 6 dpigitos numéridos ex:KD123456</small>
+            <a href="javascript:void(0)" onclick="testCampaign()" class="btn btn-primary">Validar</button>
+          </div>
         </div>
       </div>
   </body>
