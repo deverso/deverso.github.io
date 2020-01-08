@@ -18,7 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script>
-      $('#alert-div').hide()
       function testCampaign() {
         var term = $('#termInput').val()
         var res = term.match(/(^[\d]{8,9}$|^[\w]{24}$|.*\.BRM.*|KD[\d]{6}$)/)
@@ -31,8 +30,8 @@
           $('#alert-div').addClass('alert-danger')
           $('#alert-div').html('Este é um valor <b>inválido</b> para campanhas.')
         }
-        $('#alert-div').fadeIn()
-        setTimeout("$('#alert-div').fadeOut()", 5000)
+        $('#alert-div').slideDown()
+        setTimeout("$('#alert-div').slideUp()", 5000)
       }
       
       $(document).ready(function() {
@@ -50,7 +49,7 @@
       <div class="container align-self-center">
         <div class="border border-light rounded col-12 mt-5 bg">
           <h2>Campaign Validator</h2>
-          <div id="alert-div" class="alert" role="alert" style="display: block">
+          <div id="alert-div" class="alert hide" role="alert" style="display: block">
           </div>
           <div class="form-group">
             <input type="text" name="term" class="form-control" value="" autocomplete="off" id="termInput" />
