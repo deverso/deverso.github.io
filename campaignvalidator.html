@@ -20,6 +20,7 @@
     <script>
       $('#alert-div').hide()
       function testCampaign() {
+        $('#alert-div').fadeOut()
         var term = $('#termInput').val()
         var res = term.match(/(^[\d]{8,9}$|^[\w]{24}$|.*\.BRM.*|KD[\d]{6}$)/)
         if (res) {
