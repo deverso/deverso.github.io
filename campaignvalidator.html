@@ -17,6 +17,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script>
+      function testCampaign(term) {
+        var campaignPatterns = new RegExp('(^[\d]{8,9}$|^[\w]{24}$|.*\.BRM.*|KD[\d]{6}$)')
+        var res = campaignPatterns.test(term)
+        console.log(term)
+      }
+    </script>
     <title>Campaign Validator</title>
   </head>
   <body>
@@ -26,14 +33,14 @@
           <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: block">
             Este é um valor <b>inválido</b> para campanhas.
           </div>
-          <form method="post">
+          <form>
             <div class="form-group">
-              <input type="text" name="term" class="form-control" value="<?=$_POST['term']?>" autocomplete="off" />
+              <input type="text" name="term" class="form-control" value="" autocomplete="off" id="termInput" />
               <small id="emailHelp" class="form-text text-muted">&bull; ser numérico de 8 à 9 caracteres</small>
               <small id="emailHelp" class="form-text text-muted">&bull; ser alfanumérico de 24 caracteres (não pode ter espaço)</small>
               <small id="emailHelp" class="form-text text-muted">&bull; conter em qualquer posição o texto .BRM ex: Campain.home-70%off.BRM-thing</small>
               <small id="emailHelp" class="form-text text-muted">&bull; começar com o prefixo KD e ser seguido de 6 dpigitos numéridos ex:KD123456</small>
-              <button type="submit" class="btn btn-primary">Validar</button>
+              <button type="button" onclick="testCampaign(document.getElementById('termInput'))" class="btn btn-primary">Validar</button>
             </div>
           </form>
         </div>
