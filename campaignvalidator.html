@@ -19,9 +19,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script>
       $('#alert-div').hide()
-      function testCampaign(term) {
-        var campaignPatterns = new RegExp('(^[\d]{8,9}$|^[\w]{24}$|.*\.BRM.*|KD[\d]{6}$)')
-        var res = campaignPatterns.test(term)
+      function testCampaign() {
+        var term = $('#termInput').val()
+        var res = term.match(/(^[\d]{8,9}$|^[\w]{24}$|.*\.BRM.*|KD[\d]{6}$)/)
         if (res) {
           $('#alert-div').removeClass('alert-danger')
           $('#alert-div').addClass('alert-success')
@@ -31,8 +31,8 @@
           $('#alert-div').addClass('alert-danger')
           $('#alert-div').html('Este é um valor <b>inválido</b> para campanhas.')
         }
-        $('#alert-div').show()
-        setTimeOut("$('#alert-div').hide()", 2000)
+        $('#alert-div').fadeIn()
+        setTimeout("$('#alert-div').fadeOut()", 5000)
       }
     </script>
     <title>Campaign Validator</title>
@@ -51,7 +51,7 @@
               <small id="emailHelp" class="form-text text-muted">&bull; ser alfanumérico de 24 caracteres (não pode ter espaço)</small>
               <small id="emailHelp" class="form-text text-muted">&bull; conter em qualquer posição o texto .BRM ex: Campain.home-70%off.BRM-thing</small>
               <small id="emailHelp" class="form-text text-muted">&bull; começar com o prefixo KD e ser seguido de 6 dpigitos numéridos ex:KD123456</small>
-              <button type="button" onclick="testCampaign($('#termInput').val())" class="btn btn-primary">Validar</button>
+              <button type="button" onclick="testCampaign()" class="btn btn-primary">Validar</button>
             </div>
           </form>
         </div>
